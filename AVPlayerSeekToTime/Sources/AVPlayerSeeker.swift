@@ -13,7 +13,7 @@ public extension AVPlayer {
         var seeker = objc_getAssociatedObject(self, &seekerKey) as? AVPlayerSeeker
         if seeker == nil {
             seeker = AVPlayerSeeker(player: self)
-            objc_setAssociatedObject(self, &seekerKey, seeker, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &seekerKey, seeker, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
         seeker?.seekSmoothlyToTime(newChaseTime)
     }
