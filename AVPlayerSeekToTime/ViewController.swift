@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         if let duration = player.currentItem?.duration {
             let seconds = CMTimeGetSeconds(duration)
             let time = CMTime(seconds: Float64(sender.value) * seconds, preferredTimescale: duration.timescale)
-            player.fl_seekSmoothlyToTime(time)
+            player.fl_seekSmoothly(to: time)
         }
     }
 }
