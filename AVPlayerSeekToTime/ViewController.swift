@@ -19,14 +19,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let URL = NSBundle.mainBundle().URLForResource("MAH01438", withExtension: "MP4")!
-        let item = AVPlayerItem(asset: AVURLAsset(URL: URL), automaticallyLoadedAssetKeys: ["duration"])
+        let URL = Bundle.main.url(forResource: "MAH01438", withExtension: "MP4")!
+        let item = AVPlayerItem(asset: AVURLAsset(url: URL), automaticallyLoadedAssetKeys: ["duration"])
         player = AVPlayer(playerItem: item)
         playerView.layer.addSublayer(AVPlayerLayer(player: player))
         player.play()
     }
     
-    @IBAction func sliderValueChanged(sender: UISlider) {
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
         if let duration = player.currentItem?.duration {
             let seconds = CMTimeGetSeconds(duration)
             let time = CMTime(seconds: Float64(sender.value) * seconds, preferredTimescale: duration.timescale)
