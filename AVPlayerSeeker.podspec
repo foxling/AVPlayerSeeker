@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'AVPlayerSeeker'
-  s.version  = '1.0.0'
+  s.version  = '1.0'
   s.ios.deployment_target   = '8.0'
   s.license  = { :type => 'MIT', :file => 'LICENSE' }
   s.summary  = 'AVPlayer seek smoothly to time'
@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
     :tag => s.version.to_s
   }
   s.source_files = 'AVPlayerSeekToTime/Sources/*.swift'
+  s.frameworks = 'AVFoundation'
 end

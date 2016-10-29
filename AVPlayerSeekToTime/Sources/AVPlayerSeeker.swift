@@ -9,27 +9,27 @@ private var seekerKey = ""
 
 public extension AVPlayer {
     
-    public func fl_seekSmoothlyToTime(newChaseTime: CMTime) {
+    public func fl_seekSmoothly(to newChaseTime: CMTime) {
         var seeker = objc_getAssociatedObject(self, &seekerKey) as? AVPlayerSeeker
         if seeker == nil {
             seeker = AVPlayerSeeker(player: self)
             objc_setAssociatedObject(self, &seekerKey, seeker, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        seeker?.seekSmoothlyToTime(newChaseTime)
+        seeker?.seekSmoothly(to: newChaseTime)
     }
 }
 
-public class AVPlayerSeeker {
+open class AVPlayerSeeker {
     
-    public let player: AVPlayer
-    private var isSeekInProgress = false
-    private var chaseTime = kCMTimeZero
+    open let player: AVPlayer
+    fileprivate var isSeekInProgress = false
+    fileprivate var chaseTime = kCMTimeZero
     
     public init(player: AVPlayer) {
         self.player = player
     }
     
-    public func seekSmoothlyToTime(newChaseTime: CMTime) {
+    open func seekSmoothly(to newChaseTime: CMTime) {
         if CMTimeCompare(newChaseTime, chaseTime) != 0 {
             chaseTime = newChaseTime
             if !isSeekInProgress {
@@ -38,16 +38,16 @@ public class AVPlayerSeeker {
         }
     }
     
-    private func trySeekToChaseTime() {
-        if player.status == .ReadyToPlay {
+    fileprivate func trySeekToChaseTime() {
+        if player.status == .readyToPlay {
             actuallySeekToTime()
         }
     }
     
-    private func actuallySeekToTime() {
+    fileprivate func actuallySeekToTime() {
         isSeekInProgress = true
         let seekTimeInProgress = chaseTime
-        player.seekToTime(seekTimeInProgress, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { isFinished in
+        player.seek(to: seekTimeInProgress, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { isFinished in
             if CMTimeCompare(seekTimeInProgress, self.chaseTime) == 0 {
                 self.isSeekInProgress = false
             } else {

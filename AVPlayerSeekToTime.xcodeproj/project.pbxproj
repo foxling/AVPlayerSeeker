@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B433BC7A1DBFAECE004BF468 /* AVPlayerSeeker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433BC791DBFAECE004BF468 /* AVPlayerSeeker.swift */; };
 		B4D7E3191D50C1FB007B652B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7E3181D50C1FB007B652B /* AppDelegate.swift */; };
 		B4D7E31B1D50C1FB007B652B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7E31A1D50C1FB007B652B /* ViewController.swift */; };
 		B4D7E31E1D50C1FB007B652B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E31C1D50C1FB007B652B /* Main.storyboard */; };
 		B4D7E3201D50C1FB007B652B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E31F1D50C1FB007B652B /* Assets.xcassets */; };
 		B4D7E3231D50C1FB007B652B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E3211D50C1FB007B652B /* LaunchScreen.storyboard */; };
 		B4D7E32B1D50C388007B652B /* MAH01438.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E32A1D50C388007B652B /* MAH01438.MP4 */; };
-		B4D7E32E1D50DCDE007B652B /* AVPlayerSeeker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7E32D1D50DCDE007B652B /* AVPlayerSeeker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B433BC791DBFAECE004BF468 /* AVPlayerSeeker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerSeeker.swift; path = Sources/AVPlayerSeeker.swift; sourceTree = "<group>"; };
 		B4D7E3151D50C1FB007B652B /* AVPlayerSeekToTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerSeekToTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D7E3181D50C1FB007B652B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4D7E31A1D50C1FB007B652B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +26,6 @@
 		B4D7E3221D50C1FB007B652B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4D7E3241D50C1FB007B652B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D7E32A1D50C388007B652B /* MAH01438.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MAH01438.MP4; sourceTree = "<group>"; };
-		B4D7E32D1D50DCDE007B652B /* AVPlayerSeeker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerSeeker.swift; path = Sources/AVPlayerSeeker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 		B4D7E32C1D50DC93007B652B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B4D7E32D1D50DCDE007B652B /* AVPlayerSeeker.swift */,
+				B433BC791DBFAECE004BF468 /* AVPlayerSeeker.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = lingye.me;
 				TargetAttributes = {
 					B4D7E3141D50C1FB007B652B = {
@@ -151,8 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4D7E32E1D50DCDE007B652B /* AVPlayerSeeker.swift in Sources */,
 				B4D7E31B1D50C1FB007B652B /* ViewController.swift in Sources */,
+				B433BC7A1DBFAECE004BF468 /* AVPlayerSeeker.swift in Sources */,
 				B4D7E3191D50C1FB007B652B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,8 +193,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -238,8 +240,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -258,6 +262,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -271,7 +276,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.lingye.AVPlayerSeekToTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -284,7 +289,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.lingye.AVPlayerSeekToTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
