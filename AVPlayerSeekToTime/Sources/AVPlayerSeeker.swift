@@ -21,7 +21,7 @@ public extension AVPlayer {
 
 open class AVPlayerSeeker {
     
-    open let player: AVPlayer
+    open weak var player: AVPlayer?
     fileprivate var isSeekInProgress = false
     fileprivate var chaseTime = kCMTimeZero
     
@@ -30,7 +30,10 @@ open class AVPlayerSeeker {
     }
     
     open func seekSmoothly(to newChaseTime: CMTime) {
-        if CMTimeCompare(newChaseTime, chaseTime) != 0 {
+        guard let player = player else {
+            return
+        }
+        if CMTimeCompare(player.currentTime(), newChaseTime) != 0 {
             chaseTime = newChaseTime
             if !isSeekInProgress {
                 trySeekToChaseTime()
@@ -39,12 +42,18 @@ open class AVPlayerSeeker {
     }
     
     fileprivate func trySeekToChaseTime() {
+        guard let player = player else {
+            return
+        }
         if player.status == .readyToPlay {
             actuallySeekToTime()
         }
     }
     
     fileprivate func actuallySeekToTime() {
+        guard let player = player else {
+            return
+        }
         isSeekInProgress = true
         let seekTimeInProgress = chaseTime
         player.seek(to: seekTimeInProgress, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { isFinished in
