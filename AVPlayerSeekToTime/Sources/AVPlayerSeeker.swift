@@ -55,12 +55,12 @@ open class AVPlayerSeeker {
             return
         }
         isSeekInProgress = true
-        let seekTimeInProgress = chaseTime
-        player.seek(to: seekTimeInProgress, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { isFinished in
-            if CMTimeCompare(seekTimeInProgress, self.chaseTime) == 0 {
-                self.isSeekInProgress = false
+        player.seek(to: chaseTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { [weak self] isFinished in
+            guard let s = self, let player = s.player else { return }
+            if CMTimeCompare(player.currentTime(), s.chaseTime) == 0 {
+                s.isSeekInProgress = false
             } else {
-                self.trySeekToChaseTime()
+                s.trySeekToChaseTime()
             }
         })
     }
