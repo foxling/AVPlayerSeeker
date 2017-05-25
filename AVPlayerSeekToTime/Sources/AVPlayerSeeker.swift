@@ -57,7 +57,7 @@ open class AVPlayerSeeker {
         isSeekInProgress = true
         player.seek(to: chaseTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { [weak self] isFinished in
             guard let s = self, let player = s.player else { return }
-            if CMTimeCompare(player.currentTime(), s.chaseTime) == 0 {
+            if abs(CMTimeSubtract(player.currentTime(), s.chaseTime).seconds) < 0.1 {
                 s.isSeekInProgress = false
             } else {
                 s.trySeekToChaseTime()
