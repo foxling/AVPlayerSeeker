@@ -33,6 +33,9 @@ open class AVPlayerSeeker {
         guard let player = player else {
             return
         }
+        if (player.currentItem == nil) {
+            return
+        }
         if CMTimeCompare(player.currentTime(), newChaseTime) != 0 {
             chaseTime = newChaseTime
             if !isSeekInProgress {
