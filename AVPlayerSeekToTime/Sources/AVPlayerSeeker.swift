@@ -52,12 +52,14 @@ open class AVPlayerSeeker {
             return
         }
         readyObservable?.cancel()
+        readyObservable = nil
 //        print("player.status before: \(player.status.rawValue)")
         if player.status == .readyToPlay {
             actuallySeekToTime()
         } else {
             readyObservable = ReadyObservable(player, { [weak self] in
                 guard let s = self else { return }
+                s.readyObservable = nil
                 s.actuallySeekToTime()
             })
         }
