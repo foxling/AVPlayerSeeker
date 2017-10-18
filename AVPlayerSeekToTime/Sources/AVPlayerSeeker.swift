@@ -18,6 +18,15 @@ public extension AVPlayer {
         seeker?.seekSmoothly(to: newChaseTime)
     }
     
+    public func fl_currentTime() -> CMTime {
+        if let seeker = objc_getAssociatedObject(self, &seekerKey) as? AVPlayerSeeker {
+            if seeker.isSeekInProgress {
+                return seeker.chaseTime
+            }
+        }
+        return currentTime()
+    }
+    
 }
 
 open class AVPlayerSeeker {
