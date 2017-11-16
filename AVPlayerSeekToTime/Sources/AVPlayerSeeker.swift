@@ -7,15 +7,16 @@ import AVFoundation
 
 private var seekerKey = ""
 
+public typealias SeekerCompletion = ()->Void
 public extension AVPlayer {
     
-    public func fl_seekSmoothly(to newChaseTime: CMTime) {
+    public func fl_seekSmoothly(to newChaseTime: CMTime, completion: (SeekerCompletion)? = nil) {
         var seeker = objc_getAssociatedObject(self, &seekerKey) as? AVPlayerSeeker
         if seeker == nil {
             seeker = AVPlayerSeeker(player: self)
             objc_setAssociatedObject(self, &seekerKey, seeker, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        seeker?.seekSmoothly(to: newChaseTime)
+        seeker?.seekSmoothly(to: newChaseTime, completion: completion)
     }
     
     public func fl_currentTime() -> CMTime {
@@ -34,12 +35,13 @@ open class AVPlayerSeeker {
     open weak var player: AVPlayer?
     fileprivate var isSeekInProgress = false
     fileprivate var chaseTime = kCMTimeZero
+    fileprivate var completions: [SeekerCompletion] = []
     
     public init(player: AVPlayer) {
         self.player = player
     }
     
-    open func seekSmoothly(to newChaseTime: CMTime) {
+    open func seekSmoothly(to newChaseTime: CMTime, completion: (SeekerCompletion)? = nil) {
         guard let player = player else {
             return
         }
@@ -49,6 +51,9 @@ open class AVPlayerSeeker {
 //        print("seekSmoothly: \(newChaseTime), isSeekInProgress: \(isSeekInProgress), currentTime: \(player.currentTime())")
         if CMTimeCompare(player.currentTime(), newChaseTime) != 0 {
             chaseTime = newChaseTime
+            if let c = completion {
+                completions.append(c)
+            }
             if !isSeekInProgress {
                 trySeekToChaseTime()
             }
@@ -85,6 +90,10 @@ open class AVPlayerSeeker {
 //            print("seek done: \(player.currentTime()), chaseTime: \(s.chaseTime)")
             if abs(CMTimeSubtract(player.currentTime(), s.chaseTime).seconds) < 0.1 {
                 s.isSeekInProgress = false
+                for c in s.completions {
+                    c()
+                }
+                s.completions.removeAll()
             } else {
                 s.trySeekToChaseTime()
             }
