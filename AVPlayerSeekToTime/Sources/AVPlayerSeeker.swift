@@ -57,6 +57,8 @@ open class AVPlayerSeeker {
             if !isSeekInProgress {
                 trySeekToChaseTime()
             }
+        } else {
+            completion?()
         }
     }
     
