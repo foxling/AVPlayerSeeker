@@ -89,19 +89,28 @@ open class AVPlayerSeeker {
 //        print("actuallySeekToTime: \(chaseTime)")
         player.seek(to: chaseTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { [weak self] isFinished in
             guard let s = self, let player = s.player else { return }
+            guard isFinished else {
+                s.seekComplete()
+                return
+            }
 //            print("seek done: \(player.currentTime()), chaseTime: \(s.chaseTime)")
             if abs(CMTimeSubtract(player.currentTime(), s.chaseTime).seconds) < 0.1 {
-                s.isSeekInProgress = false
-                for c in s.completions {
-                    c()
-                }
-                s.completions.removeAll()
+                s.seekComplete()
             } else {
                 s.trySeekToChaseTime()
             }
         })
     }
     
+    fileprivate func seekComplete() {
+        isSeekInProgress = false
+        DispatchQueue.main.async {
+            for c in self.completions {
+                c()
+            }
+            self.completions.removeAll()
+        }
+    }
 }
 
 private class ReadyObservable: NSObject {
