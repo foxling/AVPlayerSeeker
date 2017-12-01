@@ -89,27 +89,23 @@ open class AVPlayerSeeker {
 //        print("actuallySeekToTime: \(chaseTime)")
         player.seek(to: chaseTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { [weak self] isFinished in
             guard let s = self, let player = s.player else { return }
-            guard isFinished else {
-                s.seekComplete()
-                return
-            }
 //            print("seek done: \(player.currentTime()), chaseTime: \(s.chaseTime)")
-            if abs(CMTimeSubtract(player.currentTime(), s.chaseTime).seconds) < 0.1 {
-                s.seekComplete()
-            } else {
-                s.trySeekToChaseTime()
+            DispatchQueue.main.async {
+                if abs(CMTimeSubtract(player.currentTime(), s.chaseTime).seconds) < 0.1 {
+                    s.seekComplete()
+                } else {
+                    s.trySeekToChaseTime()
+                }
             }
         })
     }
     
     fileprivate func seekComplete() {
         isSeekInProgress = false
-        DispatchQueue.main.async {
-            for c in self.completions {
-                c()
-            }
-            self.completions.removeAll()
+        for c in self.completions {
+            c()
         }
+        self.completions.removeAll()
     }
 }
 
