@@ -11,6 +11,7 @@ public typealias SeekerCompletion = ()->Void
 public extension AVPlayer {
     
     public func fl_seekSmoothly(to newChaseTime: CMTime, completion: (SeekerCompletion)? = nil) {
+        guard newChaseTime.isValid else { return }
         var seeker = objc_getAssociatedObject(self, &seekerKey) as? AVPlayerSeeker
         if seeker == nil {
             seeker = AVPlayerSeeker(player: self)
