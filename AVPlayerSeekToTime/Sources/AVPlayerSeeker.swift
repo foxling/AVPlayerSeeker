@@ -11,7 +11,7 @@ public typealias SeekerCompletion = ()->Void
 public extension AVPlayer {
     
     public func fl_seekSmoothly(to newChaseTime: CMTime, completion: (SeekerCompletion)? = nil) {
-        guard newChaseTime.isValid else { return }
+        guard newChaseTime.isValid, newChaseTime >= kCMTimeZero else { return }
         var seeker = objc_getAssociatedObject(self, &seekerKey) as? AVPlayerSeeker
         if seeker == nil {
             seeker = AVPlayerSeeker(player: self)
@@ -43,14 +43,14 @@ open class AVPlayerSeeker {
     }
     
     open func seekSmoothly(to newChaseTime: CMTime, completion: (SeekerCompletion)? = nil) {
-        guard let player = player else {
+        guard let player = player, let item = player.currentItem else {
             return
         }
-        if (player.currentItem == nil) {
+        if newChaseTime > item.duration {
             return
         }
 //        print("seekSmoothly: \(newChaseTime), isSeekInProgress: \(isSeekInProgress), currentTime: \(player.currentTime())")
-        if CMTimeCompare(player.currentTime(), newChaseTime) != 0 {
+        if player.currentTime() != newChaseTime {
             chaseTime = newChaseTime
             if let c = completion {
                 completions.append(c)
