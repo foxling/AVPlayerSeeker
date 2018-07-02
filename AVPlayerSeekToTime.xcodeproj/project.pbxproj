@@ -13,7 +13,6 @@
 		B4D7E31E1D50C1FB007B652B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E31C1D50C1FB007B652B /* Main.storyboard */; };
 		B4D7E3201D50C1FB007B652B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E31F1D50C1FB007B652B /* Assets.xcassets */; };
 		B4D7E3231D50C1FB007B652B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E3211D50C1FB007B652B /* LaunchScreen.storyboard */; };
-		B4D7E32B1D50C388007B652B /* MAH01438.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = B4D7E32A1D50C388007B652B /* MAH01438.MP4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		B4D7E31F1D50C1FB007B652B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4D7E3221D50C1FB007B652B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4D7E3241D50C1FB007B652B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4D7E32A1D50C388007B652B /* MAH01438.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MAH01438.MP4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				B4D7E32C1D50DC93007B652B /* Sources */,
-				B4D7E32A1D50C388007B652B /* MAH01438.MP4 */,
 				B4D7E3181D50C1FB007B652B /* AppDelegate.swift */,
 				B4D7E31A1D50C1FB007B652B /* ViewController.swift */,
 				B4D7E31C1D50C1FB007B652B /* Main.storyboard */,
@@ -138,7 +135,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D7E3231D50C1FB007B652B /* LaunchScreen.storyboard in Resources */,
-				B4D7E32B1D50C388007B652B /* MAH01438.MP4 in Resources */,
 				B4D7E3201D50C1FB007B652B /* Assets.xcassets in Resources */,
 				B4D7E31E1D50C1FB007B652B /* Main.storyboard in Resources */,
 			);
